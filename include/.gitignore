@@ -1,0 +1,2 @@
+# Ignore config, contains secrets!
+Config.php

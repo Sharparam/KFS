@@ -1,0 +1,74 @@
+@import url(http://fonts.googleapis.com/css?family=Great+Vibes);
+
+a, .navbar-default .navbar-nav > li > a,
+.navbar-default .navbar-brand{
+    color: #b3002d;
+}
+
+a:hover, .navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus,
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+    color: #800020;
+}
+
+h1#page-header {
+    margin: 10px auto;
+    text-align: center;
+    font-size: 48pt;
+    word-spacing: 2em;
+    font-family: 'Great Vibes', Mistral, cursive;
+}
+
+div#sff-nav-logo img {
+    height: 41px;
+}
+
+.center_text {
+	text-align: center;
+}
+
+/* Styles for the movie page */
+
+div.movie-list img.media-object {
+    width: 100px;
+    margin-top: 5px;
+}
+
+div.movie-list .media-heading > span {
+    font-size: smaller;
+}
+
+div.movie-list .media-body > p {
+    margin-bottom: 5px;
+}
+
+table.ratings {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+}
+
+table.ratings th.ratingheader {
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Styles for the about page */
+
+table.memberstable {
+    margin-left: auto;
+    margin-right: auto;
+    width: 350px;
+}
+@media (max-width: 992px) {
+    #page-header {
+        word-spacing: 1em !important;
+    }
+}
+
+@media (max-width: 768px) {
+    div#sff-nav-logo {
+        display: none;
+    }
+}
