@@ -16,6 +16,16 @@
 CREATE DATABASE IF NOT EXISTS `kfs` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `kfs`;
 
+-- Dumping structure for table kfs.data
+CREATE TABLE IF NOT EXISTS `data` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `key` varchar(50) NOT NULL,
+  `value` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `key` (`key`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='Site data';
+
+-- Data exporting was unselected.
 -- Dumping structure for table kfs.movies
 CREATE TABLE IF NOT EXISTS `movies` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -34,13 +44,9 @@ CREATE TABLE IF NOT EXISTS `movies` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `image` (`image`),
   KEY `date` (`date`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8;
 
--- Dumping data for table kfs.movies: ~0 rows (approximately)
-DELETE FROM `movies`;
-/*!40000 ALTER TABLE `movies` DISABLE KEYS */;
-/*!40000 ALTER TABLE `movies` ENABLE KEYS */;
-
+-- Data exporting was unselected.
 -- Dumping structure for table kfs.pages
 CREATE TABLE IF NOT EXISTS `pages` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -50,11 +56,7 @@ CREATE TABLE IF NOT EXISTS `pages` (
   UNIQUE KEY `name` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Dumping data for table kfs.pages: ~0 rows (approximately)
-DELETE FROM `pages`;
-/*!40000 ALTER TABLE `pages` DISABLE KEYS */;
-/*!40000 ALTER TABLE `pages` ENABLE KEYS */;
-
+-- Data exporting was unselected.
 -- Dumping structure for table kfs.users
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -63,13 +65,9 @@ CREATE TABLE IF NOT EXISTS `users` (
   `access` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
--- Dumping data for table kfs.users: ~0 rows (approximately)
-DELETE FROM `users`;
-/*!40000 ALTER TABLE `users` DISABLE KEYS */;
-/*!40000 ALTER TABLE `users` ENABLE KEYS */;
-
+-- Data exporting was unselected.
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
