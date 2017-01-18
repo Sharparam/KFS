@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS `data` (
   `value` varchar(50) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `key` (`key`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='Site data';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='Site data';
 
 -- Data exporting was unselected.
 -- Dumping structure for table kfs.movies
@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS `movies` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `image` (`image`),
   KEY `date` (`date`)
-) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Data exporting was unselected.
 -- Dumping structure for table kfs.pages
@@ -65,7 +65,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `access` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Data exporting was unselected.
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
