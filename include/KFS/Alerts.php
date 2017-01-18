@@ -1,4 +1,5 @@
 <?php
+namespace KFS;
 class Alerts {
   private static $info = array();
   private static $success = array();

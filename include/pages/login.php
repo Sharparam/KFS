@@ -1,3 +1,4 @@
+<h1>Login</h1>
 <form action="/" method="post" class="form-inline">
   <div class="form-group">
     <label for="username">Username</label>
@@ -9,3 +10,4 @@
   </div>
   <button type="submit" name="login" class="btn btn-primary">Log in</button>
 </form>
+<p>Don't have an account? <a href="?p=register">Register!</a></p>

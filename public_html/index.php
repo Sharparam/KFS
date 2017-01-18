@@ -1,6 +1,9 @@
 <?php
 ob_start();
 
+use KFS\Alerts;
+use KFS\User;
+
 session_start();
 session_regenerate_id(true);
 
@@ -10,7 +13,7 @@ $YEAR_TEXT = NULL;
 $SEASON_TEXT = NULL;
 $SEASON_TEXT_SENTENCE = NULL;
 
-$query = "SELECT * FROM `kfs_data` WHERE `key`='year' OR `key`='season';";
+$query = "SELECT * FROM `data` WHERE `key`='year' OR `key`='season';";
 
 $stmt = $db->query($query);
 
@@ -29,7 +32,6 @@ if (isset($_POST['login']) && User::login($_POST['username'], $_POST['password']
   Alerts::addSuccess('Successfully logged in!');
 } elseif (isset($_GET['a']) && $_GET['a'] === 'logout') {
   User::logout();
-  Alerts::addSuccess('Successfully logged out!');
 }
 
 $pages = array(
@@ -37,7 +39,8 @@ $pages = array(
     'links' => 'pages/links.php',
     'about' => 'pages/about.php',
     'movies' => 'pages/movies.php',
-    'login' => 'pages/login.php'
+    'login' => 'pages/login.php',
+    'register' => 'pages/register.php'
 );
 
 $isLoggedIn = User::isLoggedIn();
@@ -46,6 +49,7 @@ $isAdmin = $user !== NULL && $user->isAdmin();
 
 if ($isAdmin) {
   $pages['admin'] = 'pages/admin.php';
+  $pages['movie'] = 'pages/movie.php';
 }
 
 $page = $_GET['p'];
@@ -80,6 +84,7 @@ $scripts = array();
     <title>Kristinehamns Filmstudio</title>
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     <link href="css/main.css" rel="stylesheet" type="text/css"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
     <link href="favicon.ico" rel="shortcut icon"/>
 </head>
 <body>
@@ -135,8 +140,9 @@ $scripts = array();
       </p>
     </footer>
 </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 <?php
 if (!empty($scripts)) {
   foreach ($scripts as $script):

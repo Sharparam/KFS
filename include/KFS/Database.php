@@ -1,4 +1,7 @@
 <?php
+namespace KFS;
+
+use \PDO;
 
 class Database {
   private static $db;
@@ -25,8 +28,6 @@ class Database {
   public static function init() {
     if (static::$db !== NULL)
       return;
-
-    require_once('config.php');
 
     static::$db = new self(Config::DB_HOST, Config::DB_NAME, Config::DB_USER, Config::DB_PASS);
   }

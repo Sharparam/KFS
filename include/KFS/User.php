@@ -1,4 +1,8 @@
 <?php
+namespace KFS;
+
+use \PDOException;
+
 class User {
   const ADMIN_LEVEL = 99;
 
@@ -18,19 +22,19 @@ class User {
     if ($stmt->rowCount() !== 1)
       return NULL;
 
-    return $stmt->fetchObject('User');
+    return $stmt->fetchObject('KFS\\User');
   }
 
-  public static function findByName($name) {
-    $query = 'SELECT id, username, password, access FROM users WHERE name = :name LIMIT 1;';
+  public static function findByName($username) {
+    $query = 'SELECT id, username, password, access FROM users WHERE username = :username LIMIT 1;';
     $stmt = Database::getInstance()->prepare($query);
-    $stmt->bindValue(':name', $name);
+    $stmt->bindValue(':username', $username);
     $stmt->execute();
 
     if ($stmt->rowCount() !== 1)
       return NULL;
 
-    return $stmt->fetchObject('User');
+    return $stmt->fetchObject('KFS\\User');
   }
 
   public static function hashPassword($password) {
@@ -122,10 +126,32 @@ class User {
     return $this->access >= self::ADMIN_LEVEL;
   }
 
+  public function validate() {
+    if (empty($this->username))
+      Alerts::addError('Username cannot be empty!');
+
+    if (empty($this->password))
+      Alerts::addError('Password cannot be empty!');
+
+    if (Alerts::hasAlerts())
+      return false;
+
+    $query = 'SELECT username FROM users WHERE username=:username;';
+
+    $stmt = Database::getInstance()->prepare($query);
+    $stmt->bindValue(':username', $this->username);
+    $stmt->execute();
+    $count = $stmt->rowCount();
+
+    if ($count > 0)
+      Alerts::addError('A user with that name already exists!');
+
+    return !Alerts::hasAlerts();
+  }
+
   public function save() {
     if ($this->getId() === NULL) {
-      $this->insert();
-      return;
+      return $this->insert();
     }
 
     $query = 'UPDATE users'
@@ -143,9 +169,11 @@ class User {
       $stmt->bindValue(':id', $this->getId());
       $stmt->execute();
       $db->commit();
+      return true;
     } catch (PDOException $e) {
       $db->rollBack();
       Alerts::addError("Failed to update user: {$e->getMessage()}");
+      return false;
     }
   }
 
@@ -154,8 +182,8 @@ class User {
   }
 
   private function insert() {
-    $query = 'INSERT INTO users(username, password, access)'
-      . 'VALUES(:username, :password, :access);';
+    $query = 'INSERT INTO users(username, password)'
+      . 'VALUES(:username, :password);';
 
     $db = Database::getInstance();
 
@@ -167,9 +195,11 @@ class User {
       $stmt->execute();
       $this->id = $db->lastInsertId();
       $db->commit();
+      return true;
     } catch (PDOException $e) {
       $db->rollBack();
       Alerts::addError("Failed to insert new user: {$e->getMessage()}");
+      return false;
     }
   }
 }

@@ -1,4 +1,5 @@
 <?php
+namespace KFS;
 class Config {
   const ROOT = '/path/to/root';
   const INCLUDE_DIR = self::ROOT . '/include';
