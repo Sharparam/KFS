@@ -402,7 +402,7 @@ class Movie {
           <p><strong>Längd: </strong><?= $this->formatDuration() ?>.</p>
           <p><strong>Land: </strong><?= $this->getCountry() ?>.</p>
           <p><strong>Genre: </strong><?= $this->getGenre() ?>.</p>
-          <p><?= $this->getDescription() ?></p>
+          <?= Markdown::parse($this->getDescription()) ?>
         </div>
       </div>
     </div>
