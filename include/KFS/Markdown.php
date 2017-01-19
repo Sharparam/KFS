@@ -6,7 +6,7 @@ class Markdown {
 
   public static function parse($content) {
     if ($parser === NULL)
-      $parser = new Parsedown();
+      $parser = new \Parsedown();
 
     return $parser->text($content);
   }
