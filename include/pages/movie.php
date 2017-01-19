@@ -18,8 +18,16 @@ function setFromPost(&$movie) {
   $movie->setRating($_POST['rating']);
 }
 
-if (!isset($_POST['update']) && isset($_GET['id'])) {
+if (!isset($_POST['update']) && !isset($_POST['delete']) && isset($_GET['id'])) {
   $movie = Movie::findById($_GET['id']);
+} elseif (isset($_POST['delete']) && isset($_POST['id'])) {
+  $movie = Movie::findById($_POST['id']);
+  if ($movie !== NULL && $movie->delete()) {
+    header('Location: /?p=admin');
+    exit();
+  } else {
+    Alerts::addError('Failed to delete movie!');
+  }
 } elseif (isset($_POST['update']) && isset($_POST['id'])) {
   // Editing movie
   $movie = Movie::findById($_POST['id']);
@@ -107,10 +115,10 @@ if (!isset($_POST['update']) && isset($_GET['id'])) {
 } else {
   $movie = new Movie();
 }
-?>
 
-<?php if (Alerts::hasAlerts()) Alerts::printAll(); ?>
+if (Alerts::hasAlerts())
+  Alerts::printAll();
 
-<?php $movie->printForm(); ?>
+$movie->printForm();
 
-<?php $scripts[] = '/js/movie.js';
+$scripts[] = '/js/movie.js';

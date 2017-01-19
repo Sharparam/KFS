@@ -72,3 +72,8 @@ table.memberstable {
         display: none;
     }
 }
+
+/* Styles for the page edit form */
+form.page-form textarea {
+  font-family: monospace;
+}
