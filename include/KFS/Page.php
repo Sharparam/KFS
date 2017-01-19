@@ -28,7 +28,7 @@ class Page {
 
   public static function isPage($name) {
     if ($names === NULL) {
-      $query = "SELECT name FROM pages WHERE enabled='Y';";
+      $query = "SELECT name FROM pages;";
       $stmt = Database::getInstance()->query($query);
       self::$names = $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
     }

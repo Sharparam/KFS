@@ -41,8 +41,11 @@ $err = NULL;
 
 if (array_key_exists($page, $pages))
   $file = $pages[$page];
-elseif (Page::isPage($page))
+elseif (Page::isPage($page)) {
   $file = Page::findByName($page);
+  if (!$file->isEnabled() && !$isAdmin)
+    $file = NULL;
+}
 
 if ($file === NULL)
   $file = Page::findByName('home');
