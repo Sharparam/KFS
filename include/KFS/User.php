@@ -163,7 +163,7 @@ class User {
     try {
       $db->beginTransaction();
       $stmt = $db->prepare($query);
-      $stmt->bindValue(':username', $this->getUsername);
+      $stmt->bindValue(':username', $this->getUsername());
       $stmt->bindValue(':password', $this->getPassword());
       $stmt->bindValue(':access', $this->getAccess());
       $stmt->bindValue(':id', $this->getId());
