@@ -1,5 +1,5 @@
 <?php use KFS\Movie; ?>
-<h2 class="center_text">Filmer under <?php echo $SEASON_TEXT; ?></h2>
+<h2 class="center_text">Filmer under <?= KFS\Data::getSeasonText() ?></h2>
 <p><em>Klicka på bilderna för att besöka respektive films IMDb-sida!</em></p>
 <p>Där inget annat anges körs två visningar för varje film, en på eftermiddagen klockan 15:30 och ytterligare en på
     kvällen klockan 18:15.</p>
