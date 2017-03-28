@@ -99,7 +99,7 @@ class Movie {
     $stmt = Database::getInstance()->prepare($query);
     $stmt->bindValue(':size', $size);
     $stmt->execute();
-    return $stmt->fetch()->pages;
+    return (int)$stmt->fetch()->pages;
   }
 
   public static function averageRating() {
@@ -136,7 +136,7 @@ class Movie {
     return $this->year;
   }
 
-  public function getduration() {
+  public function getDuration() {
     return $this->duration;
   }
 
