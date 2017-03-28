@@ -6,6 +6,7 @@ class Data {
   private static $year;
   private static $season;
   private static $seasonText;
+  private static $seasonStart;
 
   public static function getYear() {
     self::init();
@@ -22,6 +23,11 @@ class Data {
     return self::$seasonText;
   }
 
+  public static function getSeasonStart() {
+    self::init();
+    return self::$seasonStart;
+  }
+
   private static function init() {
     if (self::$initialized)
       return;
@@ -32,10 +38,19 @@ class Data {
       $stmt = Database::getInstance()->query($query);
 
       while ($row = $stmt->fetch()) {
-        if ($row->key === 'year')
-          self::$year = $row->value;
-        elseif ($row->key === 'season')
-          self::$season = $row->value;
+        switch ($row->key) {
+          case 'year':
+            self::$year = $row->value;
+            break;
+
+          case 'season':
+            self::$season = $row->value;
+            break;
+
+          case 'season_start':
+            self::$seasonStart = $row->value;
+            break;
+        }
       }
 
       self::$seasonText = self::$season . ' ' . self::$year;
