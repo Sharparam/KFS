@@ -4,7 +4,7 @@ namespace KFS;
 use \PDO;
 use \PDOException;
 
-class Movie {
+class Movie implements \JsonSerializable {
   const DEFAULT_PAGE_SIZE = 10;
 
   const IMAGE_PATH = Config::PUBLIC_HTML . '/images/movies/';
@@ -409,6 +409,23 @@ class Movie {
       </div>
     </div>
     <?php
+  }
+
+  public function jsonSerialize() {
+    return array(
+      'id' => (int)$this->getId(),
+      'title' => $this->getTitle(),
+      'original' => $this->getOriginal(),
+      'director' => $this->getDirector(),
+      'duration' => (int)$this->getDuration(),
+      'country' => $this->getCountry(),
+      'description' => $this->getDescription(),
+      'image' => $this->getImage(),
+      'date' => $this->getDate(),
+      'rating' => $this->getRating(),
+      'imdb' => $this->getImdb(),
+      'genre' => $this->getGenre()
+    );
   }
 
   private static function printTextField($name, $text, $value) {
