@@ -49,21 +49,23 @@ class Movie {
   }
 
   public static function getActive() {
-    $query = "SELECT value FROM data WHERE `key` = 'season_start';";
-
-    $db = Database::getInstance();
-
-    $stmt = $db->query($query);
-    $data = $stmt->fetch();
-    $date = $data->value;
-
     $query = 'SELECT id, title, original, genre, country, director, year,'
       . 'duration, imdb, image, date, description, rating'
       . ' FROM movies WHERE date >= :date ORDER BY date ASC;';
 
-    $stmt = $db->prepare($query);
-    $stmt->bindValue(':date', $date);
+    $stmt = Database::getInstance()->prepare($query);
+    $stmt->bindValue(':date', Data::getSeasonStart());
     $stmt->execute();
+
+    return $stmt->fetchAll(PDO::FETCH_CLASS, 'KFS\\Movie');
+  }
+
+  public static function getUpcoming() {
+    $query = 'SELECT id, title, original, genre, country, director, year,'
+      . 'duration, imdb, image, date, description, rating'
+      . ' FROM movies WHERE date >= CURDATE() ORDER BY date ASC;';
+
+    $stmt = Database::getInstance()->query($query);
 
     return $stmt->fetchAll(PDO::FETCH_CLASS, 'KFS\\Movie');
   }
