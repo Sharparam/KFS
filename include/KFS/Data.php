@@ -33,7 +33,7 @@ class Data {
       return;
 
     try {
-      $query = "SELECT `key`, `value` FROM `data` WHERE `key`='year' OR `key`='season';";
+      $query = "SELECT `key`, `value` FROM `data`;";
 
       $stmt = Database::getInstance()->query($query);
 
