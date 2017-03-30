@@ -12,9 +12,9 @@ try {
 
     echo json_encode($movie);
   } elseif (isset($_GET['mode']) && $_GET['mode'] == 'archive') {
-    $pages = KFS\Movie::getPageCount();
     $page = isset($_GET['page']) ? (int)$_GET['page'] : 0;
     $size = isset($_GET['size']) ? (int)$_GET['size'] : KFS\Movie::DEFAULT_PAGE_SIZE;
+    $pages = KFS\Movie::getPageCount($size);
     $movies = KFS\Movie::getPaged($page, $size);
     echo json_encode(array(
       'movies' => $movies,
