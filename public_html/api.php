@@ -11,13 +11,6 @@ try {
       throw new Exception("Unable to find movie with ID {$id}");
 
     echo json_encode($movie);
-  } elseif (isset($_GET['page'])) {
-    $page = $_GET['page'];
-    if (KFS\Page::isPage($page)) {
-      echo json_encode(KFS\Page::findByName($page));
-    } else {
-      echo json_encode(array('error' => "{$page} is not a valid page"));
-    }
   } elseif (isset($_GET['mode']) && $_GET['mode'] == 'archive') {
     $page = isset($_GET['page']) ? (int)$_GET['page'] : 0;
     $size = isset($_GET['size']) ? (int)$_GET['size'] : KFS\Movie::DEFAULT_PAGE_SIZE;
@@ -30,6 +23,13 @@ try {
       'size' => $size,
       'count' => count($movies)
     ));
+  } elseif (isset($_GET['page'])) {
+    $page = $_GET['page'];
+    if (KFS\Page::isPage($page)) {
+      echo json_encode(KFS\Page::findByName($page));
+    } else {
+      echo json_encode(array('error' => "{$page} is not a valid page"));
+    }
   } else {
     $movies = KFS\Movie::getUpcoming();
     echo json_encode($movies);
