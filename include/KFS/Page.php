@@ -4,7 +4,7 @@ namespace KFS;
 use \PDO;
 use \PDOException;
 
-class Page {
+class Page implements \JsonSerializable {
   private static $names;
 
   private $id;
@@ -233,6 +233,17 @@ class Page {
       </div>
     </form>
     <?php
+  }
+
+  public function jsonSerialize() {
+    return array(
+      'id' => (int)$this->getId(),
+      'name' => $this->getName(),
+      'title' => $this->getTitle(),
+      'content' => $this->getContent(),
+      'sort' => (int)$this->getSort(),
+      'enabled' => $this->isEnabled()
+    );
   }
 
   private function insert() {

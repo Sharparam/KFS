@@ -417,6 +417,7 @@ class Movie implements \JsonSerializable {
       'title' => $this->getTitle(),
       'original' => $this->getOriginal(),
       'director' => $this->getDirector(),
+      'year' => (int)$this->getYear(),
       'duration' => (int)$this->getDuration(),
       'country' => $this->getCountry(),
       'description' => $this->getDescription(),
