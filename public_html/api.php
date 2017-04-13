@@ -9,7 +9,7 @@ try {
     $movie = KFS\Movie::findById($id);
 
     if ($movie === NULL) {
-      http_response_code(404)
+      http_response_code(404);
       echo json_encode(array('error' => "Unable to find movie with ID {$id}"));
       return;
     }
