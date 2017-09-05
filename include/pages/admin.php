@@ -64,7 +64,7 @@ if (Alerts::hasAlerts())
   <div class="col-md-12">
     <h1>Site Administration</h1>
     <h2>Data</h2>
-    <form class="form-inline" action="?p=admin">
+    <form class="form-inline" action="?p=admin" method="post">
       <div class="form-group">
         <label for="year">Year</label>
         <input type="text" name="year" id="year" class="form-control" placeholder="Year" value="<?= $year ?>">
