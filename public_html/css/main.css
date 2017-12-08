@@ -97,3 +97,8 @@ table.memberstable {
 form.page-form textarea {
   font-family: monospace;
 }
+
+/* Styles for the movie form */
+form.form-horizontal > div.form-group > div > textarea#description {
+  height: 120px;
+}

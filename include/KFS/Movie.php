@@ -349,16 +349,16 @@ class Movie implements \JsonSerializable {
       </div>
 
       <?php
-      static::printTextField('title', 'Title', $this->getTitle());
-      static::printTextField('original', 'Original', $this->getOriginal());
-      static::printTextField('genre', 'Genre', $this->getGenre());
-      static::printTextField('country', 'Country', $this->getCountry());
-      static::printTextField('director', 'Director', $this->getDirector());
-      static::printTextField('year', 'Year', $this->getYear());
-      static::printTextField('duration', 'Duration', $this->duration);
-      static::printTextField('imdb', 'IMDb', $this->getImdb());
-      static::printTextField('date', 'Date', $this->date);
-      static::printTextField('rating', 'Rating', $this->getRating());
+      static::printField('title', 'Title', $this->getTitle());
+      static::printField('original', 'Original', $this->getOriginal());
+      static::printField('genre', 'Genre', $this->getGenre());
+      static::printField('country', 'Country', $this->getCountry());
+      static::printField('director', 'Director', $this->getDirector());
+      static::printField('year', 'Year', $this->getYear(), 'number');
+      static::printField('duration', 'Duration', $this->duration, 'number');
+      static::printField('imdb', 'IMDb', $this->getImdb(), 'url');
+      static::printField('date', 'Date', $this->date, 'date');
+      static::printField('rating', 'Rating', $this->getRating());
       ?>
 
       <div class="form-group">
@@ -429,13 +429,13 @@ class Movie implements \JsonSerializable {
     );
   }
 
-  private static function printTextField($name, $text, $value) {
+  private static function printField($name, $text, $value, $type = 'text') {
     ?>
     <div class="form-group">
       <label for="<?= $name ?>" class="col-sm-2 control-label"><?= $text ?></label>
 
       <div class="col-sm-10">
-        <input type="text" name="<?= $name ?>" id="<?= $name ?>" placeholder="<?= $text ?>" class="form-control" value="<?= $value ?>">
+        <input type="<?= $type ?>" name="<?= $name ?>" id="<?= $name ?>" placeholder="<?= $text ?>" class="form-control" value="<?= $value ?>">
       </div>
     </div>
     <?php
