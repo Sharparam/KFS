@@ -444,9 +444,9 @@ class Movie implements \JsonSerializable {
   private function insert() {
     $query = 'INSERT INTO movies'
       . '(title, original, genre, country, director, year, duration, imdb, image,'
-      . 'date, description, rating)'
+      . 'date, description, rating, created)'
       . 'VALUES(:title, :original, :genre, :country, :director, :year, :duration,'
-      . ':imdb, :image, :date, :description, :rating);';
+      . ':imdb, :image, :date, :description, :rating, CURRENT_TIMESTAMP);';
 
     $db = Database::getInstance();
 
