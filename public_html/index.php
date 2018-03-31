@@ -18,9 +18,9 @@ if (isset($_POST['login']) && User::login($_POST['username'], $_POST['password']
 }
 
 $pages = array(
-    'movies' => 'pages/movies.php',
-    'login' => 'pages/login.php',
-    'register' => 'pages/register.php'
+  'movies' => 'pages/movies.php',
+  'login' => 'pages/login.php',
+  'register' => 'pages/register.php'
 );
 
 $isLoggedIn = User::isLoggedIn();
@@ -54,7 +54,7 @@ $scripts = array();
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="sv">
 <head>
   <meta name="verify-v1" content="1mvRHK/U5l/D8/C9P/9qCLCZy36QuER/Dcm0QwnEC+E="/>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -88,13 +88,15 @@ $scripts = array();
         <a class="navbar-brand" href="/">KFS</a>
       </div>
       <div id="sff-nav-logo" class="navbar-brand navbar-right">
-        <a href="http://sff-filmstudios.org"><img src="images/logos/sff_78x41.png"></a>
+        <a href="http://sff-filmstudios.org" aria-label="Gå till SFFs hemsida">
+          <img src="images/logos/sff_78x41.png" alt="SFF Logga">
+        </a>
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
           <?php foreach (Page::getAllEnabled() as $page): ?>
           <li>
-            <a href="/?p=<?= $page->getName() ?>" title="<?= $page->getTitle() ?>">
+            <a href="/?p=<?= $page->getName() ?>">
               <?= $page->getTitle() ?>
             </a>
           </li>
