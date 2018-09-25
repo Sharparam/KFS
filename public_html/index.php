@@ -123,7 +123,7 @@ $scripts = array();
   <footer class="clearfix">
     <hr>
     <p>
-      Copyright &copy; 2010-2017 by Kristinehamns Filmstudio |
+      Copyright &copy; 2010-2018 by Kristinehamns Filmstudio |
       <?php if ($isLoggedIn): ?>
       <?= $user ?> (<a href="/?a=logout">Logga ut</a>)
       <?php else: ?>
