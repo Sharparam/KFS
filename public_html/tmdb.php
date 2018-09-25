@@ -10,7 +10,7 @@ $type = $_GET['t'];
 
 $endpoint = 'https://api.themoviedb.org/3';
 
-$data = array('api_key' => $key);
+$data = array('api_key' => $key, 'language' => 'sv-SE');
 
 switch ($type) {
   case 'search':
